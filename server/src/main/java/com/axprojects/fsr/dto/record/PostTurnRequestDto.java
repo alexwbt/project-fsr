@@ -6,9 +6,7 @@ import lombok.NonNull;
 @Data
 public class PostTurnRequestDto {
 
-    @NonNull
-    private String stockName;
-    @NonNull
-    private Long roundId;
+    @NonNull private String stockName;
+    @NonNull private Long roundId;
 
 }

@@ -25,13 +25,14 @@ public class RecordService {
     }
 
     public Round getRound(Long id) {
-        return roundRepository.findById(id).get();
+        var round = roundRepository.findById(id);
+        if (!round.isPresent())
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "invalid round id");
+        return round.get();
     }
 
     public void createRound(Integer roundIndex) {
-        var round = new Round();
-        round.setRoundIndex(roundIndex);
-        roundRepository.save(round);
+        roundRepository.saveRound(roundIndex);
     }
 
     public void createTurn(String stockName, Long roundId) {
